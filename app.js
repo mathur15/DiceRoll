@@ -17,6 +17,10 @@ function updateCurrentScore(activePlayer,number){
     current_score = current_score + number
     document.querySelector("#current-"+activePlayer).innerHTML = current_score
 }
+function toggleActivePlayer(activePlayer){
+    return activePlayer === 0? 1:0;
+}
+
 document.querySelector(".btn-new").addEventListener("click",function(){
     init()
 })
@@ -25,7 +29,13 @@ document.querySelector(".btn-roll").addEventListener("click",function(){
     var number = generateRandomNumber()
     document.querySelector(".dice").src = "dice-"+number+".png"
     document.querySelector(".dice").style.display = "initial"
-    updateCurrentScore(activePlayer,number)
+    if(number!=1){
+        updateCurrentScore(activePlayer,number)
+    }
+    else{
+        document.querySelector("#current-"+activePlayer).textContent='0'
+        activePlayer = toggleActivePlayer(activePlayer)
+    }
 })
 document.querySelector(".btn-hold").addEventListener("click",function(){
     //update the current_score and global score
@@ -35,12 +45,7 @@ document.querySelector(".btn-hold").addEventListener("click",function(){
     document.querySelector("#score-"+activePlayer).textContent = scores[activePlayer]
     document.querySelector("#current-"+activePlayer).innerHTML = '0'
     //update the current active player
-    if(activePlayer === 0){
-        activePlayer = 1
-    }
-    else{
-        activePlayer = 0
-    }
+    activePlayer = toggleActivePlayer(activePlayer)
 })
 
 
