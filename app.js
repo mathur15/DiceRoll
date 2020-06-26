@@ -17,10 +17,27 @@ function updateCurrentScore(activePlayer,number){
     current_score = current_score + number
     document.querySelector("#current-"+activePlayer).innerHTML = current_score
 }
+function updateGlobalScore(activePlayer){
+    var current_score = document.querySelector("#current-"+activePlayer).textContent
+    scores[activePlayer] += Number(current_score)
+    document.querySelector("#score-"+activePlayer).textContent = ''
+    document.querySelector("#score-"+activePlayer).textContent = scores[activePlayer]
+    document.querySelector("#current-"+activePlayer).innerHTML = '0'
+    player_winner_status = checkWinner(activePlayer)
+    if(player_winner_status){
+        console.log("Player"+" "+(activePlayer+1)+" "+"is the winner.")
+        init()
+    }
+}
 function toggleActivePlayer(activePlayer){
     return activePlayer === 0? 1:0;
 }
-
+function checkWinner(){
+    if(scores[activePlayer] >= 100){
+        return true
+    }
+    return false
+}
 document.querySelector(".btn-new").addEventListener("click",function(){
     init()
 })
@@ -39,12 +56,8 @@ document.querySelector(".btn-roll").addEventListener("click",function(){
 })
 document.querySelector(".btn-hold").addEventListener("click",function(){
     //update the current_score and global score
-    var current_score = document.querySelector("#current-"+activePlayer).textContent
-    scores[activePlayer] += Number(current_score)
-    document.querySelector("#score-"+activePlayer).textContent = ''
-    document.querySelector("#score-"+activePlayer).textContent = scores[activePlayer]
-    document.querySelector("#current-"+activePlayer).innerHTML = '0'
     //update the current active player
+    updateGlobalScore(activePlayer)
     activePlayer = toggleActivePlayer(activePlayer)
 })
 
