@@ -12,6 +12,12 @@ function init(){
 function generateRandomNumber(){
     return Math.floor(Math.random() * 6) + 1
 }
+function updateScore(activePlayer,number){
+    var current_score = document.querySelector("#current-"+activePlayer).textContent
+    current_score = Number(current_score)
+    current_score = current_score + number
+    document.querySelector("#current-"+activePlayer).innerHTML = current_score
+}
 document.querySelector(".btn-new").addEventListener("click",function(){
     init()
 })
