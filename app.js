@@ -3,6 +3,7 @@ activePlayer = 0
 scores = [0,0]
 function init(){
     document.querySelector(".dice").style.display = "none"
+    scores = [0,0]
     document.querySelector("#score-0").innerHTML = '0'
     document.querySelector("#score-1").innerHTML = '0'
     document.querySelector("#current-0").innerHTML = '0'
@@ -30,7 +31,8 @@ function updateGlobalScore(activePlayer){
     }
 }
 function toggleActivePlayer(activePlayer){
-    return activePlayer === 0? 1:0;
+    console.log(activePlayer === 0? 1:0);
+    return activePlayer === 0? 1:0
 }
 function checkWinner(){
     if(scores[activePlayer] >= 100){
@@ -51,14 +53,18 @@ document.querySelector(".btn-roll").addEventListener("click",function(){
     }
     else{
         document.querySelector("#current-"+activePlayer).textContent='0'
+        document.querySelector(".player-"+activePlayer+"-panel").classList.remove('active')
         activePlayer = toggleActivePlayer(activePlayer)
+        document.querySelector(".player-"+activePlayer+"-panel").classList.add('active')
     }
 })
 document.querySelector(".btn-hold").addEventListener("click",function(){
     //update the current_score and global score
     //update the current active player
     updateGlobalScore(activePlayer)
+    document.querySelector(".player-"+activePlayer+"-panel").classList.remove('active')
     activePlayer = toggleActivePlayer(activePlayer)
+    document.querySelector(".player-"+activePlayer+"-panel").classList.add('active')
 })
 
 
