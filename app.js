@@ -1,7 +1,6 @@
 activePlayer = 0
 scores = [0,0]
 previous_roll = 0 //to check two consecutive sixes
-init()
 function init(){
     document.querySelector(".dice").style.display = "none"
     scores = [0,0]
@@ -11,6 +10,13 @@ function init(){
     document.querySelector("#score-1").innerHTML = '0'
     document.querySelector("#current-0").textContent = '0'
     document.querySelector("#current-1").textContent = '0'
+    document.querySelector("#form1").style.display = "initial"
+    document.querySelector("#submitButton").style.display = "initial"
+}
+function score_information(){
+    this.input_score = document.querySelector("#finalScore").value
+    console.log(input_score)
+    init()
 }
 function generateRandomNumber(){
     return Math.floor(Math.random() * 6) + 1
@@ -46,6 +52,8 @@ function declareWinner(){
     document.querySelector(".btn-roll").style.display = "none"
     document.querySelector(".btn-hold").style.display = "none"
     document.querySelector(".dice").style.display = "none"
+    document.querySelector("#form1").style.display = "none"
+    document.querySelector("#submitButton").style.display = "none"
 }
 document.querySelector(".btn-new").addEventListener("click",function(){
     document.querySelector("#name-0").textContent = "Player 1"

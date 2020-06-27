@@ -140,19 +140,25 @@ i {
 .btn-new { top: 45px;}
 .btn-roll { top: 403px;}
 .btn-hold { top: 467px;}
-.form {
+#form1 {
     color: #EB4D4D;
     display: inline-block;
     margin-left: 405px;
     font-size: 20px;
     line-height: 1;
     vertical-align: text-top;
-    margin-top: -400px;
+    margin-top: -285px;
     transition: margin 0.3s;}
 #finalScore{
     width:50px;
     height:30px;
     border-style:solid
+}
+#submitButton{
+    margin-top:-245px;
+    border-style:solid;
+    width:70px;
+    color: #EB4D4D;
 }
 
 .dice {
