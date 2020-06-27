@@ -31,7 +31,7 @@ function updateGlobalScore(activePlayer){
     }
 }
 function toggleActivePlayer(activePlayer){
-    console.log(activePlayer === 0? 1:0);
+    //console.log(activePlayer === 0? 1:0);
     return activePlayer === 0? 1:0
 }
 function checkWinner(){
