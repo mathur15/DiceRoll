@@ -1,22 +1,23 @@
 activePlayer = 0
+inputScore = 0
 scores = [0,0]
 previous_roll = 0 //to check two consecutive sixes
+init()
 function init(){
-    document.querySelector(".dice").style.display = "none"
     scores = [0,0]
     activePlayer = 0
     previous_roll = 0
+    document.querySelector(".dice").style.display = "none"
     document.querySelector("#score-0").innerHTML = '0'
     document.querySelector("#score-1").innerHTML = '0'
     document.querySelector("#current-0").textContent = '0'
     document.querySelector("#current-1").textContent = '0'
-    document.querySelector("#form1").style.display = "initial"
-    document.querySelector("#submitButton").style.display = "initial"
-}
-function score_information(){
-    this.input_score = document.querySelector("#finalScore").value
-    console.log(input_score)
-    init()
+    document.querySelector("#submitButton").style.visibility = "visible"
+    document.querySelector("#form1").style.visibility = "visible"
+    document.querySelector("#name-0").textContent = "Player 1"
+    document.querySelector("#name-1").textContent = "Player 2"
+    document.querySelector(".btn-roll").style.display = "initial"
+    document.querySelector(".btn-hold").style.display = "initial"
 }
 function generateRandomNumber(){
     return Math.floor(Math.random() * 6) + 1
@@ -42,7 +43,7 @@ function toggleActivePlayer(activePlayer){
     return activePlayer === 0? 1:0
 }
 function checkWinner(current_score){
-    if(scores[activePlayer]+current_score >= 20){
+    if(scores[activePlayer]+current_score >= inputScore){
         return true
     }
     return false
@@ -51,16 +52,15 @@ function declareWinner(){
     document.querySelector("#name-"+activePlayer).textContent = "WINNER"
     document.querySelector(".btn-roll").style.display = "none"
     document.querySelector(".btn-hold").style.display = "none"
-    document.querySelector(".dice").style.display = "none"
-    document.querySelector("#form1").style.display = "none"
-    document.querySelector("#submitButton").style.display = "none"
+    document.querySelector(".dice").style.display= "none"
+    document.querySelector("#form1").style.visibility = "hidden"
+    document.querySelector("#submitButton").style.visibility = "hidden"
 }
 document.querySelector(".btn-new").addEventListener("click",function(){
-    document.querySelector("#name-0").textContent = "Player 1"
-    document.querySelector("#name-1").textContent = "Player 2"
-    document.querySelector(".btn-roll").style.display = "initial"
-    document.querySelector(".btn-hold").style.display = "initial"
     init()
+})
+document.querySelector("#submitButton").addEventListener("click",function(){
+    inputScore = document.querySelector("#finalScore").value
 })
 
 document.querySelector(".btn-roll").addEventListener("click",function(){
